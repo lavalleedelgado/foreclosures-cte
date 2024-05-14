@@ -64,6 +64,11 @@ egen uniq = tag(fips)
 crosstab `Y' `G' `X' i.region [aw = pw] using "`TAB'", sheet(students) statistics(N missing mean min q max)
 crosstab `Z' if uniq using "`TAB'", sheet(counties) statistics(N missing mean min q max)
 
+* Calculate correlations between endogenous and instrumental variables.
+foreach z of local Z {
+  pwcorr `G' `z' [aw = pw]
+}
+
 ********************************************************************************
 * Impute missing data.
 ********************************************************************************
