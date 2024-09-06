@@ -2,7 +2,7 @@
 *.dta
 *.csv
 *.txt
-*.xls?
+*.xls*
 *.doc
 *.ppt
 *.pdf
@@ -16,3 +16,4 @@
 *.synctex.gz
 /in/
 /out/
+/_archive/

@@ -213,7 +213,12 @@ program define putlabels
   * Write labels.
   cwf `pwf'
   file close `f'
-  if "`defvlablist'" != "" label drop _all
+  foreach vlab of local defvlablist {
+    capture label drop `vlab'
+    ds, has(vallabel `vlab')
+    local varlist `r(varlist)'
+    if "`varlist'" != "" label values `varlist' .
+  }
   include "`do'"
 
   * Report variables not in the control file.
